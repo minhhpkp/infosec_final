@@ -2,6 +2,11 @@
 
 ## Bài 1
 
+Để chạy các hệ mật trong bài 1, đầu tiên cần clone repo này về một thư mục rồi chuyển console vào thư mục part1:
+
+    git clone https://github.com/minhhpkp/infosec_final.git
+    cd part1
+
 ### Xây dụng hệ mật trên đường cong Elliptic cho mục đích mã hóa và chữ ký số
 
 Em sử dụng phương pháp tạo đường cong Elliptic là Barreto-Naehrig (BN) được mô tả ở [\[BN05\]](https://github.com/scipr-lab/ecfactory/blob/master/references/Barreto%20Naehrig%202005%20---%20Pairing-Friendly%20Elliptic%20Curves%20of%20Prime%20Order.pdf). Để sinh đường cong, em sử dụng thư viện [ecfactory](https://github.com/scipr-lab/ecfactory/) chạy trên Sage Math notebook. Code sinh đường cong ở file sage math notebook là [480bit_BN_Curve.ipynb](/part1/generating%20elliptic%20curve/480bit_BN_Curve.ipynb), có thể được xem trước ở file [480bit_BN_Curve.html](/part1/generating%20elliptic%20curve/480bit_BN_Curve.html).
@@ -13,11 +18,19 @@ p = 3121748550315991538214173699589534134746816072564600451419102228601975673027
 n = 3121748550315991538214173699589534134746816072564600451419102228601975671261042335610073746124023902317385879851778395454090705207338203955310073
 ```
 
+Để chạy hệ mật trên đường cong elliptic cho mục đích mã hóa, chạy lệnh sau:
+
+    python ellipticcurve_run.py --type encryption
+
+Để chạy hệ mật cho mục đích mã hóa (ECDSA), chạy lệnh sau:
+
+    python ellipticcurve_run.py --type signature
+
 Với bản tin cần mã hóa/ký là _"Chào mừng 20 năm thành lập trường ĐHCN."_, kết quả chạy hệ mật dựa trên đường cong $E$ ở trên như sau:
 
 #### Hệ mật El Gamal trên đường cong Elliptic cho mục đích mã hóa:
 
-Khóa công khai:<br>
+Khóa công khai:
 
 ```
 P = (2628708152930118420921448954284099879138393451878172207317617502060174370336746282686317608095239524235056788545351452769993600430160983895115254, 274147431141426391789273636195704065353249318025906212392045025215445134478011917289706594228319451838568724471288294969240853169244648897034901)
@@ -73,6 +86,10 @@ s = 5061087957152448564765218001274206469071074100946627616821110236684591561894
 
 Em sử dụng thư viện Cryptodome để tạo cặp số $p$ và $q$ làm tham số cho giải thuật. Để hệ mật sử dụng khóa có độ dài 3072 bit, em sinh ra $p$ và $q$ là 2 số nguyên tố có độ dài 1536 bit để modulus $n = p \cdot q$ của hệ mật có độ dài 3072 bit.
 
+Để chạy hệ mật RSA, chạy lệnh sau:
+
+    python RSA.py
+
 Kết quả chạy hệ mật trên bản tin _"Chào mừng 20 năm thành lập trường ĐHCN."_ như sau:
 
 Tham số của hệ mật:
@@ -120,6 +137,10 @@ modulus: p = 1197624779990265846019200200610191883339830838875499982480859542630
 generator: g = 48284855524439699495898023006563424030358593486759306222835365587132537093155454330818417929870034764124681996097797615491273259434376418715441533330981798438943486880548277650555105721676141967585029002887810455940775854835212592689992550196504381797925927589399952737304791375230064448401121275251290177082
 ```
 
+Để chạy hệ mật El Gamal với tham số được tạo sẵn, chạy lệnh sau:
+
+    python elgamal_run.py --load 1
+
 Kết quả chạy trên cặp tham số được tạo sẵn đó như sau:
 
 Khóa công khai $\beta$:
@@ -153,6 +174,10 @@ gamma = 108802682361141838704879126348247136212259314317721078256990786004214711
 delta = 27443942231940777710375975469302398102092940341837519984650423900203733601924773980680033663425234797102898393596371574939091160645719357434356288699373834032432473097765176609365897519190220680953561944082556388719300062243349796308809045163918789291626649433655817143759543559608027343273686894987368529047
 ```
 
+Chương trình của em cũng có thể tạo cặp tham số mới cho hệ mật. Để chạy hệ mật với một cặp tham số được sinh mới, chạy lệnh sau:
+
+    python elgamal_run.py --load 0
+
 Trên một cặp tham số $p$ và $g$ khác là:
 
 ```
@@ -177,6 +202,6 @@ gamma = 805139007298611612595674545293687265321906428664785029961269005856169061
 delta = 14518342834124192789649507613015916156254778341049916988733604479373071490186599723735588104665004583685420374707387781528331011978478224412160185841364123254341454954037547989276147471867750672103700167242115629514640542010800609256717367700132781451268396717078335742086982710873829250377420600009712361938
 ```
 
-Footnote
-====
+# Footnote
+
 [1] Độ dài của biểu diễn một số $x$ trong hệ cơ số $b$ là $\lfloor log_b(x) \rfloor + 1$. Do đó độ dài của biểu diễn của $p$ trong hệ cơ số $base$ là $\lfloor log_{base} (p) \rfloor + 1$. Vì em lấy độ dài khối là $\lfloor log_{base} (p) \rfloor$, tức nhỏ hơn $1$ so với độ dài của biểu diễn của $p$, nên biểu diễn số $x$ của các khối sẽ luôn nhỏ hơn $p$.

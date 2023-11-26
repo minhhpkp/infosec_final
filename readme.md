@@ -4,7 +4,7 @@
 
 ### Xây dụng hệ mật trên đường cong Elliptic cho mục đích mã hóa và chữ ký số
 
-Em sử dụng phương pháp tạo đường cong Elliptic là Barreto-Naehrig (BN) được mô tả ở [\[BN05\]](https://github.com/scipr-lab/ecfactory/blob/master/references/Barreto%20Naehrig%202005%20---%20Pairing-Friendly%20Elliptic%20Curves%20of%20Prime%20Order.pdf). Để sinh đường cong, em sử dụng thư viện [ecfactory](https://github.com/scipr-lab/ecfactory/) chạy trên Sage Math notebook. Code sinh đường cong ở file sage math notebook là [480bit_BN_Curve.ipynb](/part1/generating%20elliptic%20curve/480bit_BN_Curve.ipynb), có thể được xem trước ở [đây](/part1/generating%20elliptic%20curve/480bit_BN_Curve.html).
+Em sử dụng phương pháp tạo đường cong Elliptic là Barreto-Naehrig (BN) được mô tả ở [\[BN05\]](https://github.com/scipr-lab/ecfactory/blob/master/references/Barreto%20Naehrig%202005%20---%20Pairing-Friendly%20Elliptic%20Curves%20of%20Prime%20Order.pdf). Để sinh đường cong, em sử dụng thư viện [ecfactory](https://github.com/scipr-lab/ecfactory/) chạy trên Sage Math notebook. Code sinh đường cong ở file sage math notebook là [480bit_BN_Curve.ipynb](/part1/generating%20elliptic%20curve/480bit_BN_Curve.ipynb), có thể được xem trước ở file [480bit_BN_Curve.html](/part1/generating%20elliptic%20curve/480bit_BN_Curve.html).
 
 Đường cong $E$ được được xây dựng có phương trình $y^2 = x^3 + 139968$ định nghĩa trên trường $Z_p$ với $p$ là số nguyên tố. $E$ có số điểm $n$ là số nguyên tố có độ dài **480 bit**. Giá trị của $p$ và $n$ như sau:
 

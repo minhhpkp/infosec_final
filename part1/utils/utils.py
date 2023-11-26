@@ -33,6 +33,9 @@ BASE_UCS4 = 0x10FFFF + 1
 
 
 def text_to_num(text, base=BASE_UCS4, basech=chr(0)):
+    """
+    Convert a text to a number in the numerical system of given base
+    """
     n = 0
     for ch in text:
         digit = ord(ch) - ord(basech)
@@ -41,6 +44,9 @@ def text_to_num(text, base=BASE_UCS4, basech=chr(0)):
 
 
 def num_to_text(num, base=BASE_UCS4, basech=chr(0)):
+    """
+    Convert a number in a given base to a text.
+    """
     chlist = []
     while num > 0:
         digit = num % base
@@ -51,6 +57,10 @@ def num_to_text(num, base=BASE_UCS4, basech=chr(0)):
 
 
 def text_to_blocks(text, p, base=BASE_UCS4, basech=chr(0)):
+    """
+    Split a text into blocks of length floor(log_{base}(p))
+    then convert those blocks into numbers.
+    """
     blocks = []
     block_length = floor(log(p, base))
     for i in range(0, len(text), block_length):
@@ -65,11 +75,9 @@ def mod_sqrt(a, p):
     Calculating square root of quadratic residue a
     modulo p. None is returned if a is non-residue.
     """
-
     def legendre_symbol(a1, p1):
         ls = pow(a1, (p1 - 1) // 2, p1)
         return -1 if ls == p1 - 1 else ls
-
     if legendre_symbol(a, p) != 1:
         return None
     elif a == 0:
@@ -84,6 +92,30 @@ def mod_sqrt(a, p):
         s //= 2
         e += 1
     n = 2
+    
+    while legendre_symbol(n, p) != -1:
+        n += 1
+    x = pow(a, (s + 1) // 2, p)
+    b = pow(a, s, p)
+    g = pow(n, s, p)
+    r = e
+
+    while True:
+        t = b
+        m = 0
+        for m in range(r):
+            if t == 1:
+                break
+            t = pow(t, 2, p)
+
+        if m == 0:
+            return x
+
+        gs = pow(g, 2 ** (r - m - 1), p)
+        g = (gs * gs) % p
+        x = (x * gs) % p
+        b = (b * g) % p
+        r = m
 
 
 def gcd(a, b):

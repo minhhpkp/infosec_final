@@ -1,6 +1,8 @@
-from utils import generator, num_to_text
+from utils import generator
 from ElGamal import ElGamal
 import argparse
+from utils import BASE_UCS4, text_to_num
+from math import floor, log
 
 # Create an ArgumentParser object
 parser = argparse.ArgumentParser(description="Run El Gamal with options.")
@@ -8,24 +10,36 @@ parser = argparse.ArgumentParser(description="Run El Gamal with options.")
 # Add arguments to the parser
 parser.add_argument(
     "--load",
-    type=bool,
-    default=1,
+    type=int,
+    default=True,
     help="Choose either to load precalculated parameters or to calculate new parameters for El Gamal. Input 1 to load precalculated params or 0 to calculate new params.",
 )
 
 # Parse the command line arguments
 args = parser.parse_args()
 
-plain_text = open("./inputs/plaintext.txt", "r", encoding="utf-8").read()
-if args.load:
+if args.load == 1:
     with open("./inputs/elgamal.txt", "r") as file:
         p = int(file.readline().strip())
         g = int(file.readline().strip())
 else:
-    BIT_LENGTH = 512
+    BIT_LENGTH = 1024
     key = generator.generate_elgamal_params(BIT_LENGTH)
     p = int(key.p)
     g = int(key.g)
+
+plain_text = open("./inputs/plaintext.txt", "r", encoding="utf-8").read()
+textblocks = []
+numblocks = []
+block_length = floor(log(p, BASE_UCS4))
+for i in range(0, len(plain_text), block_length):
+    block = plain_text[i : i + block_length]
+    textblocks.append(block)
+    x = text_to_num(block, BASE_UCS4)
+    numblocks.append(x)
+print(textblocks)
+print(numblocks)
+
 
 print(f"modulus: p = {p}")
 print(f"generator: g = {g}")

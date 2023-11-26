@@ -1,6 +1,7 @@
 from random import randrange
 from utils import gcd, inverse_mod, text_to_blocks, power_mod, generator, num_to_text
-
+from utils import BASE_UCS4, text_to_num
+from math import floor, log
 
 class RSA:
     def __init__(self, p, q):
@@ -68,6 +69,17 @@ def run():
     print(f"private key: d = {rsa.private_key()}")
 
     plain_text = open("./inputs/plaintext.txt", "r", encoding="utf-8").read()
+    n = p * q
+    textblocks = []
+    numblocks = []
+    block_length = floor(log(n, BASE_UCS4))
+    for i in range(0, len(plain_text), block_length):
+        block = plain_text[i : i + block_length]
+        textblocks.append(block)
+        x = text_to_num(block, BASE_UCS4)
+        numblocks.append(x)
+    print(textblocks)
+    print(numblocks)
 
     cipher = rsa.encrypt(plain_text)
     print(f"cipher: {cipher}")

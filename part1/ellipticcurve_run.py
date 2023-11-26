@@ -1,16 +1,10 @@
 import argparse
+from utils import BASE_UCS4, text_to_num
+from math import floor, log
 
 # Create an ArgumentParser object
 parser = argparse.ArgumentParser(
     description="Run Elliptic Curve cryptography system with options."
-)
-
-# Add arguments to the parser
-parser.add_argument(
-    "--input",
-    type=str,
-    default="bn_elliptic_curve",
-    help="Choose the input elliptic curve for loading into the system. Options are bn_elliptic_curve, cp_elliptic_curve, and dem_elliptic_curve.",
 )
 
 parser.add_argument(
@@ -23,9 +17,7 @@ parser.add_argument(
 # Parse the command line arguments
 args = parser.parse_args()
 
-ecinput = "./inputs/" + args.input + ".txt"
-
-with open(ecinput, "r") as file:
+with open("./inputs/bn_elliptic_curve.txt", "r") as file:
     # Prime Field characteristic
     p = int(file.readline().strip())
     # Curve coefficients
@@ -35,6 +27,16 @@ with open(ecinput, "r") as file:
     n = int(file.readline().strip())
     # plain text to be encrypted
 plain_text = open("./inputs/plaintext.txt", "r", encoding="utf-8").read()
+textblocks = []
+numblocks = []
+block_length = floor(log(p, BASE_UCS4))
+for i in range(0, len(plain_text), block_length):
+    block = plain_text[i : i + block_length]
+    textblocks.append(block)
+    x = text_to_num(block, BASE_UCS4)
+    numblocks.append(x)
+print(textblocks)
+print(numblocks)
 
 from utils import curve_to_string
 print(curve_to_string(p, a, b, n))

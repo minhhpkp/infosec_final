@@ -30,7 +30,7 @@ Trong đó: $P$ là điểm sinh của đường cong, $Q = P \cdot m$ với $m$
 m = 2900851751762304631439143829416961288387144843633299922558609386221815197431757082210795280194679487748771717133869826452493005488172855519501402
 ```
 
-Để mã hóa bản tin, đầu tiên, em chia văn bản thành các khối, sau đó em chuyển các khối này về dạng số trong hệ cơ số $base = 1114112$ là số ký tự trong bảng mã Unicode UCS4, là phiên bản Unicode trong máy em. Các khối có độ dài là $blocklength = \lfloor log_{base}(p) \rfloor$. Khi đó biểu diễn số $x$ của các khối sẽ luôn nhỏ hơn $p$[^1]. Cuối cùng em mã hóa các biểu diễn số của các khối thành bản mã bằng cách sử dụng thuật toán trong sách Cryptography: Theory and Practice, trang 292. Kết quả chia khối, số hóa và mã hóa như sau:
+Để mã hóa bản tin, đầu tiên, em chia văn bản thành các khối, sau đó em chuyển các khối này về dạng số trong hệ cơ số $base = 1114112$ là số ký tự trong bảng mã Unicode UCS4, là phiên bản Unicode trong máy em. Các khối có độ dài là $blocklength = \lfloor log_{base}(p) \rfloor$. Khi đó biểu diễn số $x$ của các khối sẽ luôn nhỏ hơn $p$ [\[1\]](#footnote). Cuối cùng em mã hóa các biểu diễn số của các khối thành bản mã bằng cách sử dụng thuật toán trong sách Cryptography: Theory and Practice, trang 292. Kết quả chia khối, số hóa và mã hóa như sau:
 
 ```
 Văn bản ban đầu được chia ra thành các khối:
@@ -177,4 +177,6 @@ gamma = 805139007298611612595674545293687265321906428664785029961269005856169061
 delta = 14518342834124192789649507613015916156254778341049916988733604479373071490186599723735588104665004583685420374707387781528331011978478224412160185841364123254341454954037547989276147471867750672103700167242115629514640542010800609256717367700132781451268396717078335742086982710873829250377420600009712361938
 ```
 
-[^1]: Độ dài của biểu diễn một số $x$ trong hệ cơ số $b$ là $\lfloor log_b(x) \rfloor + 1$. Do đó độ dài của biểu diễn của $p$ trong hệ cơ số $base$ là $\lfloor log_{base} (p) \rfloor + 1$. Vì em lấy độ dài khối là $\lfloor log_{base} (p) \rfloor$, tức nhỏ hơn $1$ so với độ dài của biểu diễn của $p$, nên biểu diễn số $x$ của các khối sẽ luôn nhỏ hơn $p$.
+Footnote
+====
+[1] Độ dài của biểu diễn một số $x$ trong hệ cơ số $b$ là $\lfloor log_b(x) \rfloor + 1$. Do đó độ dài của biểu diễn của $p$ trong hệ cơ số $base$ là $\lfloor log_{base} (p) \rfloor + 1$. Vì em lấy độ dài khối là $\lfloor log_{base} (p) \rfloor$, tức nhỏ hơn $1$ so với độ dài của biểu diễn của $p$, nên biểu diễn số $x$ của các khối sẽ luôn nhỏ hơn $p$.

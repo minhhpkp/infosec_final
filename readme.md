@@ -208,7 +208,7 @@ Em tìm hiểu về đồng tiền điện tử **Arbitrum** và bài viết c�
 
 ## Bài 3
 
-Nhóm em (nhóm 15) làm một bài trình bày về giao thức HTTPS. Nội dung bài trình bày ở [đây](https://docs.google.com/presentation/d/11uPCDESwtRJ269EZ3Lw7FEhcC5VG65pbf5DIgIi9zlg/edit#slide=id.g2a02512d6c4_0_0).
+Nhóm em (nhóm 15) làm một bài trình bày về giao thức HTTPS. Nội dung bài trình bày ở [đây](https://docs.google.com/presentation/d/11uPCDESwtRJ269EZ3Lw7FEhcC5VG65pbf5DIgIi9zlg/edit?usp=sharing).
 
 ## Footnote
 

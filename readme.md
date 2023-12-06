@@ -202,6 +202,14 @@ gamma = 805139007298611612595674545293687265321906428664785029961269005856169061
 delta = 14518342834124192789649507613015916156254778341049916988733604479373071490186599723735588104665004583685420374707387781528331011978478224412160185841364123254341454954037547989276147471867750672103700167242115629514640542010800609256717367700132781451268396717078335742086982710873829250377420600009712361938
 ```
 
-# Footnote
+## Bài 2
+
+Em tìm hiểu về đồng tiền điện tử **Arbitrum** và bài viết của em nằm ở file [Giới thiệu Arbitrum](/Giới%20thiệu%20Arbitrum.pdf).
+
+## Bài 3
+
+Nhóm em (nhóm 15) làm một bài trình bày về giao thức HTTPS. Nội dung bài trình bày ở [đây](https://docs.google.com/presentation/d/11uPCDESwtRJ269EZ3Lw7FEhcC5VG65pbf5DIgIi9zlg/edit#slide=id.g2a02512d6c4_0_0).
+
+## Footnote
 
 [1] Độ dài của biểu diễn một số $x$ trong hệ cơ số $b$ là $\lfloor log_b(x) \rfloor + 1$. Do đó độ dài của biểu diễn của $p$ trong hệ cơ số $base$ là $\lfloor log_{base} (p) \rfloor + 1$. Vì em lấy độ dài khối là $\lfloor log_{base} (p) \rfloor$, tức nhỏ hơn $1$ so với độ dài của biểu diễn của $p$, nên biểu diễn số $x$ của các khối sẽ luôn nhỏ hơn $p$.
